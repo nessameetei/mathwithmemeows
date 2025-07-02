@@ -39,26 +39,69 @@ class MathGame {
 
     generateNewProblem() {
         this.tilesDisabled = false;
-        const operators = ['+', '-', '×'];
-        const operator = operators[Math.floor(Math.random() * operators.length)];
-        let num1, num2, answer;
-        const maxNumber = Math.min(10 + this.level * 5, 50);
-        switch (operator) {
-            case '+':
-                num1 = Math.floor(Math.random() * maxNumber) + 1;
-                num2 = Math.floor(Math.random() * maxNumber) + 1;
+        let operator, num1, num2, answer;
+        let level = this.level;
+        // Level-based difficulty
+        if (level === 1) {
+            operator = '+';
+            num1 = Math.floor(Math.random() * 9) + 1;
+            num2 = Math.floor(Math.random() * 9) + 1;
+            answer = num1 + num2;
+        } else if (level === 2) {
+            operator = Math.random() < 0.5 ? '+' : '-';
+            num1 = Math.floor(Math.random() * 9) + 1;
+            num2 = Math.floor(Math.random() * 9) + 1;
+            if (operator === '+') {
                 answer = num1 + num2;
-                break;
-            case '-':
-                num1 = Math.floor(Math.random() * maxNumber) + 10;
-                num2 = Math.floor(Math.random() * num1) + 1;
+            } else {
+                // Ensure no negative answers
+                if (num2 > num1) [num1, num2] = [num2, num1];
                 answer = num1 - num2;
-                break;
-            case '×':
-                num1 = Math.floor(Math.random() * Math.min(12, maxNumber / 2)) + 1;
-                num2 = Math.floor(Math.random() * Math.min(12, maxNumber / 2)) + 1;
+            }
+        } else if (level === 3) {
+            operator = Math.random() < 0.5 ? '+' : '-';
+            num1 = Math.floor(Math.random() * 20) + 1;
+            num2 = Math.floor(Math.random() * 20) + 1;
+            if (operator === '+') {
+                answer = num1 + num2;
+            } else {
+                if (num2 > num1) [num1, num2] = [num2, num1];
+                answer = num1 - num2;
+            }
+        } else if (level === 4) {
+            const ops = ['+', '-', '×'];
+            operator = ops[Math.floor(Math.random() * ops.length)];
+            if (operator === '+') {
+                num1 = Math.floor(Math.random() * 20) + 1;
+                num2 = Math.floor(Math.random() * 20) + 1;
+                answer = num1 + num2;
+            } else if (operator === '-') {
+                num1 = Math.floor(Math.random() * 20) + 1;
+                num2 = Math.floor(Math.random() * 20) + 1;
+                if (num2 > num1) [num1, num2] = [num2, num1];
+                answer = num1 - num2;
+            } else {
+                num1 = Math.floor(Math.random() * 10) + 1;
+                num2 = Math.floor(Math.random() * 10) + 1;
                 answer = num1 * num2;
-                break;
+            }
+        } else {
+            const ops = ['+', '-', '×'];
+            operator = ops[Math.floor(Math.random() * ops.length)];
+            if (operator === '+') {
+                num1 = Math.floor(Math.random() * 50) + 1;
+                num2 = Math.floor(Math.random() * 50) + 1;
+                answer = num1 + num2;
+            } else if (operator === '-') {
+                num1 = Math.floor(Math.random() * 50) + 1;
+                num2 = Math.floor(Math.random() * 50) + 1;
+                if (num2 > num1) [num1, num2] = [num2, num1];
+                answer = num1 - num2;
+            } else {
+                num1 = Math.floor(Math.random() * 12) + 1;
+                num2 = Math.floor(Math.random() * 12) + 1;
+                answer = num1 * num2;
+            }
         }
         this.currentProblem = { num1, num2, operator, answer };
         this.num1Element.textContent = num1;
@@ -71,10 +114,10 @@ class MathGame {
     }
 
     renderAnswerTiles() {
-        // Generate 20 random wrong answers and 1 correct answer
+        // Generate 14 random wrong answers and 1 correct answer
         const correct = this.currentProblem.answer;
         const answers = new Set([correct]);
-        while (answers.size < 21) {
+        while (answers.size < 15) {
             let delta = Math.floor(Math.random() * 30) + 1;
             let wrong = Math.random() < 0.5 ? correct + delta : correct - delta;
             if (wrong < 0) wrong = Math.abs(wrong) + 1;

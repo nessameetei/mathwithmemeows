@@ -335,7 +335,7 @@ header p {
 
 .answer-tiles {
     display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 18px;
     justify-content: center;
@@ -344,11 +344,12 @@ header p {
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 8px;
 }
 
 .answer-tile {
     aspect-ratio: 1 / 1;
-    min-width: 60px;
+    min-width: 70px;
     max-width: 120px;
     width: 100%;
     height: auto;
@@ -405,10 +406,14 @@ header p {
 
 @media (max-width: 600px) {
     .answer-tiles {
-        gap: 10px;
+        grid-template-columns: repeat(5, 1fr);
+        grid-template-rows: repeat(3, 1fr);
+        gap: 8px;
+        padding: 0 2px;
     }
     .answer-tile {
-        min-width: 60px;
-        font-size: 1.2rem;
+        min-width: 40px;
+        font-size: 1.1rem;
+        border-radius: 10px;
     }
 } 
