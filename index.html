@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math with Memeows! 🐱</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🐱 Math with Memeows! 🐱</h1>
+            <p>Solve the puzzle and get a surprise! 🎉</p>
+        </header>
+
+        <div class="game-area">
+            <div class="score-board">
+                <div class="score-item">
+                    <span class="score-label">Score:</span>
+                    <span id="score">0</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Level:</span>
+                    <span id="level">1</span>
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Correct:</span>
+                    <span id="correct-count">0</span>
+                    <img src="images/memeow.png" alt="Memeow" class="count-memeow" />
+                </div>
+                <div class="score-item">
+                    <span class="score-label">Wrong:</span>
+                    <span id="wrong-count">0</span>
+                    <span class="count-emoji">💩</span>
+                </div>
+            </div>
+
+            <div class="puzzle-card">
+                <div class="puzzle-display">
+                    <span id="num1">5</span>
+                    <span id="operator">+</span>
+                    <span id="num2">3</span>
+                    <span>=</span>
+                    <span>?</span>
+                </div>
+
+                <div class="answer-section">
+                    <div class="answer-tiles" id="answer-tiles"></div>
+                    <button id="submit-btn">Check Answer! 🚀</button>
+                </div>
+
+                <div class="feedback" id="feedback">
+                    <div class="emoji" id="emoji"></div>
+                    <div class="message" id="message"></div>
+                </div>
+            </div>
+
+            <div class="controls">
+                <button id="new-problem-btn" class="secondary-btn">New Problem! 🎲</button>
+                <button id="reset-score-btn" class="secondary-btn">Reset Score! 🔄</button>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>How to play:</h3>
+            <ul>
+                <li>🧮 Solve the math problem</li>
+                <li>✅ Get a smiley face for correct answers!</li>
+                <li>💩 Get a poop emoji for wrong answers</li>
+                <li>🎯 Try to get the highest score!</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
